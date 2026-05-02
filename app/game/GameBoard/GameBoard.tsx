@@ -17,7 +17,7 @@ export default function GameBoard({ players, onLifeChange }: GameBoardProps) {
     const boardClasses =
         playerCount <= 2
             ? "grid-cols-1"
-            : playerCount <= 4
+            : playerCount <= 5
                 ? "grid-cols-2"
                 : "grid-cols-3";
 
@@ -28,8 +28,8 @@ export default function GameBoard({ players, onLifeChange }: GameBoardProps) {
         }
 
         // 5 players: last two cards centered-ish across bottom
-        if (playerCount === 5 && index === 3) {
-            return "col-span-1";
+        if (playerCount === 5 && index === 4) {
+            return "col-span-2 w-full";
         }
 
         return "";
@@ -49,7 +49,7 @@ export default function GameBoard({ players, onLifeChange }: GameBoardProps) {
         }
 
         if (playerCount === 5 || playerCount === 6) {
-            return index < 3 ? "rotate-180" : "";
+            return index < 2 ? "rotate-180" : "";
         }
 
         return "";
