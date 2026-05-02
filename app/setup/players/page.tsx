@@ -3,6 +3,10 @@
 import { ArrowLeft } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import {
+  DEFAULT_STARTING_LIFE,
+  saveGameSession,
+} from "@/lib/game-session";
 import { parsePlayerCountParam } from "@/lib/player-count";
 
 const iconButtonClass =
@@ -38,7 +42,12 @@ function PlayersForm() {
 
   const handleNext = () => {
     setIsLoading(true);
-    router.push("/setup/life");
+    const displayNames = names.map((n, i) => n.trim() || `Player ${i + 1}`);
+    saveGameSession({
+      names: displayNames,
+      startingLife: DEFAULT_STARTING_LIFE,
+    });
+    router.push("/game");
   };
 
   if (playerCount === null) {
